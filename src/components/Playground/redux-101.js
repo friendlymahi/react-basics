@@ -23,7 +23,7 @@ const setCount =({count=1} ={}) =>({
     count
 });
 
-const store = createStore((state ={count:0},action) => {
+const countReducer = (state ={count:0},action) => {
 	// console.log("store created/updated");
 	switch(action.type)
 	{
@@ -33,7 +33,9 @@ const store = createStore((state ={count:0},action) => {
     case "SET":return {count:action.count};
 	default: return state;
 	}
-});
+};
+
+const store = createStore(countReducer);
 
 const unsubscribe = store.subscribe(()=>{
 	console.log("Subscribed. Cur state",store.getState());
