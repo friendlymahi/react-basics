@@ -1,6 +1,13 @@
 import actions from "./../../actions/Expensify";
 
-const defaultExpenseList = [];
+const defaultExpenseList = [
+	/*{
+		id:12345,
+		description:"RoomRent",
+		amt:21,
+		createdAt:120
+	},*/
+];
 
 export default (state = defaultExpenseList,action) =>
 {
@@ -13,7 +20,7 @@ export default (state = defaultExpenseList,action) =>
 		// return state.concat([{id:uuid()}]);
 		return state.filter((expense)=>action.payload.id!==expense.id);
 	case actions.EDIT_EXPENSE:
-		return state.map((expense)=>action.payload.id!==expense.id?({...expense}):({...expense,description:action.payload.description,amt:action.payload.amt}));
+		return state.map((expense)=>action.payload.id!==expense.id?({...expense}):({...expense,description:action.payload.description,amt:action.payload.amt,createdAt:action.payload.createdAt}));
 	default:
 		return state;
 	}

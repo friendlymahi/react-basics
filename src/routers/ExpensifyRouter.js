@@ -20,15 +20,17 @@ const store = createStore(expensifyReducer);
 
 console.log(store.getState());
 
-const getExpensesForDisplay = (expenses, {filterText = "", sortBy ="date", startDate, endDate} = {}) => {
+const getExpensesForDisplay = (expenses, {filterText = "", sortBy ="date", startDate = undefined, endDate = undefined} = {}) => {
 	console.log(sortBy);
-	const newExpenses = filterText?expenses.filter((expense) => expense.description.includes(filterText)):[...expenses];
+	let newExpenses = filterText?expenses.filter((expense) => expense.description.toLowerCase().includes(filterText.toLowerCase())):[...expenses];
+
+	newExpenses = newExpenses.filter((expense) => (typeof startDate === "number"?expense.createdAt >= startDate:true) && (typeof endDate === "number"? expense.createdAt<=endDate:true));
 
 	switch(sortBy)
 	{
 	case "amt": return newExpenses.sort((a,b)=>a.amt-b.amt);
 	case "desc": return newExpenses.sort((a,b)=>(a.description.toLowerCase()<b.description.toLowerCase())?-1:1);
-	case "date": return newExpenses;
+	case "date": return newExpenses.sort((a,b)=>a.createdAt-b.createdAt);
 	default: return newExpenses;
 	}
 };
@@ -37,14 +39,18 @@ const unsubscribe = store.subscribe((state = store.getState())=>{
 	console.log(getExpensesForDisplay(state.expenses,state.filters));
 });
 
-const actionForExpense1 = store.dispatch(addExpense());
-const actionForExpense2 = store.dispatch(addExpense());
-//store.dispatch(removeExpense(actionForExpense1.payload));
-store.dispatch(editExpense(actionForExpense2.payload.id, "CatelynMoney", 15));
-// store.dispatch(setTextFilter("Reno"));
-store.dispatch(setStartDate(1));
-store.dispatch(setEndDate(12));
+const actionForExpense1 = store.dispatch(addExpense('Expense 1',200,120));
+const actionForExpense2 = store.dispatch(addExpense('Expense 2',300,120));
+store.dispatch(removeExpense(actionForExpense1.payload));
+store.dispatch(editExpense(actionForExpense2.payload.id, "CatelynExpenses", 300, 120));
+store.dispatch(addExpense('OtherExpense',300,200));
+store.dispatch(addExpense('Expense 3',350,150));
+store.dispatch(addExpense("EveExpenses",500,175));
+store.dispatch(setTextFilter("expense"));
 store.dispatch(sortByDesc());
+store.dispatch(setStartDate(150));
+store.dispatch(setEndDate(200));
+store.dispatch(sortByDate());
 
 export default
 <div>
