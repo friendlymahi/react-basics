@@ -7,7 +7,7 @@ import mySaga from "./../../sagas";
 import workspaceReducer from "./../../reducers/Workspace";
 
 const sagaMiddleware = createSagaMiddleware();
-const store = createStore(workspaceReducer, compose(applyMiddleware(sagaMiddleware), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+const store = createStore(workspaceReducer, applyMiddleware(sagaMiddleware)
 );
 sagaMiddleware.run(mySaga)
 
