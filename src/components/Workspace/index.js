@@ -12,111 +12,99 @@ const store = createStore(workspaceReducer, compose(applyMiddleware(sagaMiddlewa
 sagaMiddleware.run(mySaga)
 
 export default () =>
-    <Provider store={store}><h1 class="headline-1 no-padding">Welcome, User</h1>
-        <div class="paragraph">Current Balance and Funds Performance Widget</div>
-        <div class="paragraph">Actions to complete</div>
-        <div class="paragraph">Projections , Being on track, etc Carousel with different CTAs</div>
-        <div class="paragraph">Recent 360 Events - Recommended actions</div>
-        <div class="paragraph">Recent 360 Events - Info</div>
-        <div class="paragraph">Recommended Reading</div>
-        <div class="paragraph">Whats new at VALIC?</div>
+    <Provider store={store}><h1 class="headline-1 no-padding"></h1>
         <div class="row">
 
             <div class="col-md-3 col-sm-6">
-                <a href="./home-cover-video.html" class="card tall-sm rounded-md text-center bg-gradient-sky">
+                <p href="./home-cover-video.html" class="card tall-sm-0 rounded-md text-center bg-gradient-sky">
                     <div class="card-block">
+                    Welcome, User
+                    </div>
+                </p>
+            </div>
+            <div class="col-md-9 col-sm-6">
+            <p href="./home-cover-video.html" class="card tall-sm-0 rounded-md text-center bg-gradient-sky">
+                <div class="card-block">
+                <div class="paragraph">Current Balance and On Track ? Indicator</div>
+                </div>
+            </p>
+        </div>
+
+        <div class="col-md-12 col-sm-6 ">
+        <p href="./informational.html" class="card tall-sm rounded-md text-center bg-gradient-sky">
+            <div class="card-block">
+
+            <div class="paragraph">FutureFIT or RetireFIT etc</div>
+            </div>
+        </p>
+    </div>
+
+            <div class="col-md-12 col-sm-6 ">
+                <p href="./informational.html" class="card tall-sm rounded-md text-center bg-gradient-sky">
+                    <div class="card-block">
+
+                    <div class="paragraph">Recent 360 Events - Recommended actions, Kick it up, Violator band Carousel</div>
+                    </div>
+                </p>
+            </div>
+
+            <div class="col-md-12 col-sm-6 ">
+            <p href="./informational.html" class="card tall-sm rounded-md text-center bg-gradient-sky">
+                <div class="card-block">
+
+                <div class="paragraph">Interactive Change Contribution In 3 Clicks</div>
+                </div>
+            </p>
+        </div>
+            <div class="col-md-12 col-sm-6">
+                <p href="./article.html" class="card tall-sm rounded-md text-center bg-gradient-sky">
+                    <div class="card-block">
+                        Marketing Block <br/><br/><br/>
                         <button class="btn .cta">Call To Action</button>
                     </div>
-                </a>
+                </p>
             </div>
 
-            <div class="col-md-3 col-sm-6">
-                <a href="./dashboard.html" class="card tall-sm rounded-md text-center bg-gradient-sky">
-                    <div class="card-block">
-                        <h4 class="text-snow1">Dashboard</h4>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-md-3 col-sm-6">
-                <a href="./landing.html" class="card tall-sm rounded-md text-center bg-gradient-sky">
-                    <div class="card-block">
-                        <h4 class="text-snow1">Landing</h4>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-md-3 col-sm-6">
-                <a href="./informational.html" class="card tall-sm rounded-md text-center bg-gradient-sky">
-                    <div class="card-block">
-                        <h4 class="text-snow1">Informational</h4>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-md-3 col-sm-6">
-                <a href="./article.html" class="card tall-sm rounded-md text-center bg-gradient-sky">
-                    <div class="card-block">
-                        <h4 class="text-snow1">Article</h4>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-md-3 col-sm-6">
-                <a href="./about.html" class="card tall-sm rounded-md text-center bg-gradient-sky">
-                    <div class="card-block">
-                        <h4 class="text-snow1">About</h4>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-md-3 col-sm-6">
-                <a href="./news.html" class="card tall-sm rounded-md text-center bg-gradient-sky">
-                    <div class="card-block">
-                        <h4 class="text-snow1">News</h4>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-md-3 col-sm-6">
-                <a href="./contact.html" class="card tall-sm rounded-md text-center bg-gradient-sky">
-                    <div class="card-block">
-                        <h4 class="text-snow1">Contact</h4>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-md-3 col-sm-6">
-                <a href="./signin.html" class="card tall-sm rounded-md text-center bg-gradient-sky">
-                    <div class="card-block">
-                        <h4 class="text-snow1">Sign In</h4>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-md-3 col-sm-6">
-                <a href="./404.html" class="card tall-sm rounded-md text-center bg-gradient-sky">
-                    <div class="card-block">
-                        <h4 class="text-snow1">404</h4>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-md-3 col-sm-6">
-                <a href="./success.html" class="card tall-sm rounded-md text-center bg-gradient-sky">
-                    <div class="card-block">
-                        <h4 class="text-snow1">Success</h4>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-md-3 col-sm-6">
-                <a href="./projects/index.html" class="card tall-sm rounded-md text-center bg-gradient-sky">
-                    <div class="card-block">
-                        <h4 class="text-snow1">Projects</h4>
-                    </div>
-                </a>
-            </div>
-
+            <div class="col-md-12 col-sm-6 ">
+            <p href="./informational.html" class="card tall-md rounded-md text-center bg-gradient-sky">
+                <div class="card-block">
+                <div class="paragraph">Fund Performance</div>
+                </div>
+            </p>
         </div>
+
+            <div class="col-md-12 col-sm-6 ">
+            <p href="./informational.html" class="card tall-lg rounded-md text-center bg-gradient-sky">
+                <div class="card-block">
+                <div class="paragraph">Projections , Being on track, etc Carousel with different CTAs</div>
+                    <h4 class="text-snow1">Informational</h4>
+                </div>
+            </p>
+        </div>
+        
+        <div class="col-md-6 col-sm-6">
+        <p href="./dashboard.html" class="card tall-sm rounded-md text-center bg-gradient-sky">
+            <div class="card-block">
+                Contact my financial Advisor
+            </div>
+        </p>
+    </div>
+
+    <div class="col-md-3 col-sm-6">
+        <p href="./landing.html" class="card tall-sm rounded-md text-center bg-gradient-sky">
+            <div class="card-block">
+Other Help 1
+            </div>
+        </p>
+    </div>
+
+<div class="col-md-3 col-sm-6">
+    <p href="./dashboard.html" class="card tall-sm rounded-md text-center bg-gradient-sky">
+        <div class="card-block">
+        Other Help 2
+        </div>
+    </p>
+</div>
+
+</div>
     </Provider>;
