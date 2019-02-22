@@ -34,6 +34,17 @@
             n.className += t + "js", ("ontouchstart" in o || o.DocumentTouch && c instanceof DocumentTouch) && (n.className += t + "touch")
         }(window, document);
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    
+(function($){$.fn.fakechatbot=function(options){var settings=$.extend({durationPerWord:200},options);var typingStart=function(elt){elt.addClass('fakechatbot-typing-active');};var typingStop=function(elt){elt.removeClass('fakechatbot-typing-active');};var currentDuration=0;var countElements=$(this).children('.fakechatbot-message').length;var countElement=0;typingStart($(this).children('.fakechatbot-typing'));$(this).children('.fakechatbot-message').each(function(index,value){countElement++;var message=$(this).html();var messageWords=message.split(' ').length;var currentElement=$(this);currentDuration=currentDuration+(messageWords*settings.durationPerWord);setTimeout(function(){currentElement.addClass('fakechatbot-message-display');},currentDuration);if($(this).attr('data-pause')){setTimeout(function(){typingStop($('.fakechatbot-typing'));},currentDuration);currentDuration=currentDuration+parseInt($(this).attr('data-pause'));setTimeout(function(){typingStart($('.fakechatbot-typing'));},currentDuration);}
+if(countElement==countElements){setTimeout(function(){typingStop($('.fakechatbot-typing'));},currentDuration);}});};}(jQuery));
+    </script>
+    <script type="text/javascript">
+        $('#chatbot').fakechatbot({
+        durationPerWord: 200
+        });
+    </script>
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -163,7 +174,61 @@
             color: white;
             text-decoration: underline;
         }
-    </style>
+        
+            .fakechatbot-typing, .fakechatbot-message { display: none; }
+            .fakechatbot-typing-active, .fakechatbot-message-display { display: block; }
+            #chatcontent {
+            position: fixed;
+            right: -26em;            
+            top: 30%;
+            width: 30em;
+            background: hsla(80, 90%, 40%, 0.7);
+            color: white;
+            margin: -1em 0 0 0;
+            padding: 0.5em 0.5em 0.5em 1.5em;
+            border-radius: 25px 0px 0px 25px;
+            z-index:99999;
+            }
+
+            #chatcontent:hover { right: 0 }
+            #chatcontent { transition: 0.2s }
+           
+            .cb__list {
+  padding: 0;
+  list-style-type: none;
+  font-family: sans-serif;
+  width: 320px;
+  margin: 0 auto;
+  overflow: hidden; }
+  .cb__list .bubble {
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    line-height: 1.45em;
+    border-radius: 3px;
+    margin: 0 0 1em 0;
+    text-align: left;
+    position: relative;
+    padding: 6px 12px;
+    background: #444444;
+    font-size: 11px;
+    border: none;
+    max-width: 90%;
+    min-width: 44px;
+    min-height: 12px; }
+    .cb__list .bubble.typing {
+      animation: cb-font-fade 1.2s ease-in-out infinite; }
+
+@keyframes cb-font-fade {
+  50% {
+    color: transparent; }
+  100% {
+    color: "inherit"; } }
+
+      </style>
+      
+      <script>
+      !function(t,e,i,n){function s(e,i){this.element=e,this.options=t.extend({},o,i),this._defaults=o,this._name=a,this.init()}var a="chatBubble",o={typingSpeed:40,delay:1e3};s.prototype={init:function(){function i(){n.addMessage(n.element,s[u],o).then(function(){e.setTimeout(function(){u++,u<a&&i()},l)})}var n=this;t(n.element).addClass("cb__list");var s=this.options.messages,a=s.length,o=this.options.typingSpeed||this.defaults.typingSpeed,l=this.options.delay||this.defaults.delay,u=0;i()},addMessage:function(i,n,s){var a=t("<li></li>"),o=t('<div class="bubble typing">...</div>'),l=n.split(" ").length,u=l/s*6e3;return u<1e3&&(u=1e3),u>1e4&&(u=1e4),a.html(o),t(i).append(a),new Promise(function(t,i){e.setTimeout(function(){o.html(n).removeClass("typing"),t(!0)},u)})}},t.fn[a]=function(e){return this.each(function(){t.data(this,"plugin_"+a)||t.data(this,"plugin_"+a,new s(this,e))})}}(jQuery,window,document);
+      </script>
 </head>
 
 <body>
@@ -201,10 +266,54 @@
             <div class="w-nav-overlay" data-wf-ignore=""></div>
         </div>
 
+               
+        <div id="chatcontent">
+        <img src="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/svg/chat.svg" width="40">
+        
+        <ul id="messages"></ul>
+        <script>
+                var messages = ['Hi, Welcome to VALIC. How can I help you?', 
+                'I am Lance. What is the contribution limit for 2019?', 
+                'Contribution limit for 2019 is $19000', 'Am I on target for my retirement?',
+            'You are doing well towards your target income, Lance.']
+               
+                
+                $("#chatcontent").mouseover(function(){
+                    //$(this).css("background-color", "#CCCCCC");                    
+                });
+
+                $("#messages").chatBubble({
+                        messages: messages,
+                    typingSpeed: 5000
+                    });
+
+                function showChat()
+                {
+                    ('#messages').chatBubble({
+                    messages: messages,
+                    typingSpeed: 5000
+                    });
+                }
+                function stopChat()
+                {
+                }
+        </script>
+        <!--
+                    <div class="fakechatbot-message" data-pause="1000"><strong>User:</strong> Hello!</div>
+                    <div class="fakechatbot-message" data-pause="3000"><strong>Bot:</strong> Good morning! How can I help you?</div>
+                    <div class="fakechatbot-message" data-pause="2000"><strong>User:</strong> Do you want to join us?</div>
+                    <div class="fakechatbot-message" data-pause="1000"><strong>Bot:</strong> Of course, where are you?</div>
+                    <div class="fakechatbot-typing">Typing ...</div>
+        -->
+            </div>
         <div class="body-page-content">
+            
             <div id="root"></div>
         </div>
+        
         </div>
+
+ 
 
 
         <!-- Footer -->
